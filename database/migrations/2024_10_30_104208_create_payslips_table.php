@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('base_salary', 10, 2); // Base salary
             $table->decimal('attendance_incentive', 8, 2)->nullable(); // Attendance incentive
             $table->decimal('other_incentive', 8, 2)->nullable(); // Other incentive
-            $table->decimal('normal_ot_hours', 5, 2)->nullable(); // Normal OT hours
+            $table->float('normal_ot_hours', 5, 2)->nullable(); // Normal OT hours
             $table->decimal('double_ot_hours', 5, 2)->nullable(); // Double OT hours
             $table->decimal('epf', 8, 2)->nullable(); // EPF deduction
             $table->decimal('salary_advance', 8, 2)->nullable(); // Salary advance deduction

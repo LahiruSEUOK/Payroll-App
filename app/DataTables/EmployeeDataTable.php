@@ -24,12 +24,13 @@ class EmployeeDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query)
             {
-            //    $editBtn = "<a href='".route('employees.edit', $query->id)."' class='btn btn-primary'>edit</a>";
-               $deleteBtn = "<a href='".route('employees.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'>delete</a>";
+                $deleteBtn = "<a href='".route('employees.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'>Delete</a>";
+                $editBtn = "<a href='".route('employees.edit', $query->id)."' class='btn btn-info ml-2 edit-item'>Update</a>";
 
-             return $deleteBtn;
+                return $editBtn . ' ' . $deleteBtn;
 
             })
+           
             ->addColumn('emp_profile_pic', function($query)
             {
               return  $img = "<img width='100px' src='".asset('uploads/'.$query->emp_profile_pic)."' ></img>";
@@ -49,8 +50,7 @@ class EmployeeDataTable extends DataTable
     /**
      * Optional method if you want to use the html builder.
      */
-    public function html(): HtmlBuilder
-    {
+    public function html(): HtmlBuilder    {
         return $this->builder()
                     ->setTableId('employee-table')
                     ->columns($this->getColumns())
@@ -79,13 +79,14 @@ class EmployeeDataTable extends DataTable
           //  Column::make('emp_profile_pic')->width(200),
             Column::make('emp_no')->width(100),
             Column::make('emp_name'),
-            column::make('emp_address'),
+          //  column::make('emp_address'),
             column::make('emp_base_salary'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)
             ->width(200)
             ->addClass('text-center'),
+    
            
         ];
     }

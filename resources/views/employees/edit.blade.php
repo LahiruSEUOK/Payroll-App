@@ -19,7 +19,7 @@
               <div class="card-body">
                 <form action="{{route('employees.update', $employee->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('PUT')  
                       {{-- <div class="form-group">
                         <label>Preview</label>
                         <br>
@@ -52,7 +52,7 @@
                           <option {{$employee->emp_status== 0 ? 'selected': ''}} value="0">Inactive</option>
                         </select>
                       </div>
-                      <button type="submit" class="btn btn-primary">Update Employee</button>
+                      <button type="SUBMIT" class="btn btn-primary">Update Employee</button>
                 </form>
               </div>
              

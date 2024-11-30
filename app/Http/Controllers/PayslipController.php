@@ -106,25 +106,25 @@ class PayslipController extends Controller
             'emp_no' => 'required|numeric',
             'emp_name' => 'required|string',
             'month' => 'required|date_format:Y-m',
-            'basic_salary' => 'required|numeric|min:0',
+           'basic_salary' => 'required|numeric|min:0',
             'attendance_incentive' => 'nullable|numeric|min:0',
             'other_incentive' => 'nullable|numeric|min:0',
-            'before835Incentive' => 'nullable|numeric|min:0',
+           'before835Incentive' => 'nullable|numeric|min:0',
             'normal_ot_hours' => 'nullable|numeric|min:0',
-            'double_ot_hours' => 'nullable|numeric|min:0',
+           'double_ot_hours' => 'nullable|numeric|min:0',
             'epf_rate' => 'nullable|numeric|min:0|max:100', // e.g., 8 for 8%
             'emp_epf_rate' => 'nullable|numeric|min:0|max:100', // e.g., 12 for 12%
             'etf_rate' => 'nullable|numeric|min:0|max:100', // e.g., 3 for 3%
             'salary_advance' => 'nullable|numeric|min:0',
-            'informed_absent_days' => 'nullable|numeric|min:0',
-            'uninformed_absent_days' => 'nullable|numeric|min:0',
-            'late_days' => 'nullable|numeric|min:0',
-            'half_day_leave_hours' => 'nullable|numeric|min:0',
-            'other_deductions' => 'nullable|numeric|min:0',
-            'informed_absent_days_count' => 'nullable|numeric|min:0',
-            'uninformed_absent_days_count' => 'nullable|numeric|min:0',
-            'late_attendance_days_count' => 'nullable|numeric|min:0',
-            'half_day_leaves_count' => 'nullable|numeric|min:0',
+           'informed_absent_days' => 'nullable|numeric|min:0',
+           'uninformed_absent_days' => 'nullable|numeric|min:0',
+           'late_days' => 'nullable|numeric|min:0',
+           'half_day_leave_hours' => 'nullable|numeric|min:0',
+           'other_deductions' => 'nullable|numeric|min:0',
+           'informed_absent_days_count' => 'nullable|numeric|min:0',
+           'uninformed_absent_days_count' => 'nullable|numeric|min:0',
+           'late_attendance_days_count' => 'nullable|numeric|min:0',
+           'half_day_leaves_count' => 'nullable|numeric|min:0',
         ]);
     
         // Extract the validated data
