@@ -101,8 +101,14 @@ class PayslipController extends Controller
      */
     public function store(Request $request)
     {
+
+    //     print_r($request->all());
+    // exit;
+
         // Validate the incoming request data
-        $validatedData = $request->validate([
+        $validatedData = $request->validate([  
+            'ot_rate' => 'min:0',
+            'emp_epf'=> 'required|numeric',
             'emp_no' => 'required|numeric',
             'emp_name' => 'required|string',
             'month' => 'required|date_format:Y-m',
@@ -116,10 +122,10 @@ class PayslipController extends Controller
             'emp_epf_rate' => 'nullable|numeric|min:0|max:100', // e.g., 12 for 12%
             'etf_rate' => 'nullable|numeric|min:0|max:100', // e.g., 3 for 3%
             'salary_advance' => 'nullable|numeric|min:0',
-           'informed_absent_days' => 'nullable|numeric|min:0',
+           'informed_absent_days' => 'nullable|numeric|min:0',//
            'uninformed_absent_days' => 'nullable|numeric|min:0',
            'late_days' => 'nullable|numeric|min:0',
-           'half_day_leave_hours' => 'nullable|numeric|min:0',
+           'half_day_leave_hours' => 'min:0',
            'other_deductions' => 'nullable|numeric|min:0',
            'informed_absent_days_count' => 'nullable|numeric|min:0',
            'uninformed_absent_days_count' => 'nullable|numeric|min:0',
@@ -132,9 +138,12 @@ class PayslipController extends Controller
         $attendanceIncentive = $validatedData['attendance_incentive'] ?? 0;
         $otherIncentive = $validatedData['other_incentive'] ?? 0;
         $before835Incentive = $validatedData['before835Incentive'] ?? 0;
-        $pfTotal = $basicSalary + $attendanceIncentive + $otherIncentive + $before835Incentive;
+        $pfTotal = $basicSalary + $attendanceIncentive + $otherIncentive ;
+        // $pfTotal = $basicSalary + $attendanceIncentive + $otherIncentive + $before835Incentive;
     
-        $otRate = 250;
+    
+        // $otRate = 250;
+        $otRate = $validatedData['ot_rate'] ?? 0;
         $normalOtHours = $validatedData['normal_ot_hours'] ?? 0;
         $doubleOtHours = $validatedData['double_ot_hours'] ?? 0;
     
@@ -143,11 +152,19 @@ class PayslipController extends Controller
         $doubleOtPay = $doubleOtHours * $otRate * 2;
     
         // Total earnings calculation (gross salary)
-        $totalEarnings = $pfTotal + $normalOtPay + $doubleOtPay;
+        $totalEarnings = $pfTotal + $normalOtPay + $doubleOtPay+ $before835Incentive;
     
+
+        
+        if( $validatedData['emp_epf'] == 1){ 
         $epfRate = $validatedData['epf_rate'] ?? 8;
         $emp_epfRate = $validatedData['emp_epf_rate'] ?? 12;
         $etfRate = $validatedData['etf_rate'] ?? 3;
+        } else {
+            $epfRate = 0;
+            $emp_epfRate = 0;
+            $etfRate = 0;
+        } 
     
         $salaryAdvance = $validatedData['salary_advance'] ?? 0;
         $informedAbsentDays = $validatedData['informed_absent_days'] ?? 0;
