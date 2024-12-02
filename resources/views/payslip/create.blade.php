@@ -183,18 +183,18 @@
 <div class="form-row">
     <div class="col-md-4">
         <label>Actual Days</label>
-        <input type="number" class="form-control" name="informed_absent_days">
+        <input type="number" class="form-control" name="informed_absent_days_count">
     </div>
     <div class="col-md-4">
         <label>Deducting Days</label>
-        <input type="number" class="form-control" id="inf-ded-days" name="informed_absent_days_count">
+        <input type="number" class="form-control" id="inf-ded-days" name="informed_absent_days">
     </div>
     <div class="col-md-4">
     <div class="input-group-append">
         <!-- Button that triggers the calculation -->
         <button type="button" class="note-btn btn btn-dark btn-sm" id="inf-abs-sal">Calculate Amount</button> 
     </div>
-    <input type="text" class="form-control" id="inf-abs" name="inf-abs" placeholder="Click Calculate" readonly>
+    <input type="text" class="form-control" id="inf-abs" name="informed_absent_days" placeholder="Click Calculate" readonly>
     
     </div>
 </div>
@@ -207,15 +207,19 @@
 <br>
 <h6>Uninformed Absent Days</h6>
 <div class="form-row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <label>Actual Days</label>
         <input type="number" class="form-control" name="uninformed_absent_days">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <label>Deducting Days</label>
         <input type="number" class="form-control" id="uinf-ded-days" name="uinformed_absent_days_count">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <label>Deducting Rate</label>
+        <input type="number" class="form-control" id="deduct-rate" name="">
+    </div>
+    <div class="col-md-3">
     <div class="input-group-append">
         <!-- Button that triggers the calculation -->
         <button type="button" class="note-btn btn btn-dark btn-sm" id="uinf-abs-sal">Calculate Amount</button> 
@@ -365,7 +369,7 @@
     document.getElementById('cal-day-sal').addEventListener('click', calculateSalary);
 </script>
 <script>
-    // Function to calculate the salary
+    // Function to calculate informed abseant days deduction
     function calculateinfdayssal() {
         // Get values from the respective input fields
         const deductingdays = parseFloat(document.getElementById('inf-ded-days').value) || 0;
@@ -375,7 +379,7 @@
         // Perform the calculation
         const total = deductingdays * daysal;
 
-        // Set the calculated total in the 'cinf-day' input field
+        // Set the calculated total in the 'inf-day' input field
         document.getElementById('inf-abs').value = total.toFixed(2);
     }
 
@@ -383,15 +387,16 @@
     document.getElementById('inf-abs-sal').addEventListener('click', calculateinfdayssal);
 </script>
 <script>
-    // Function to calculate the salary
+    // Function to calculate the uninformed days deducting
     function calculateuinfdayssal() {
         // Get values from the respective input fields
         const deductingdays = parseFloat(document.getElementById('uinf-ded-days').value) || 0;
         const daysal = parseFloat(document.getElementById('cal_day').value) || 0;
+        const dedrate = parseFloat(document.getElementById('deduct-rate').value) || 0;
 
 
         // Perform the calculation
-        const total = deductingdays * daysal;
+        const total = deductingdays * daysal * dedrate;
 
         // Set the calculated total in the 'cinf-day' input field
         document.getElementById('uinf-abs').value = total.toFixed(2);

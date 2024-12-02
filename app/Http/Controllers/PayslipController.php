@@ -107,6 +107,9 @@ class PayslipController extends Controller
 
         // Validate the incoming request data
         $validatedData = $request->validate([  
+
+            'inf-abs-sal'=> 'min:0',
+            'inf-abs'=> 'min:0',
             'ot_rate' => 'min:0',
             'emp_epf'=> 'required|numeric',
             'emp_no' => 'required|numeric',
@@ -174,7 +177,7 @@ class PayslipController extends Controller
         $otherDeductions = $validatedData['other_deductions'] ?? 0;
     
         // New Fields
-        $informedAbsentDaysCount = $validatedData['informed_absent_days_count'] ?? 0;
+        $informedAbsentDaysCount = $validatedData['informed_absent_days_count'] ?? 0;  /////////////////////////////
         $uninformedAbsentDaysCount = $validatedData['uninformed_absent_days_count'] ?? 0;
         $lateAttendanceDaysCount = $validatedData['late_attendance_days_count'] ?? 0;
         $halfDayLeavesCount = $validatedData['half_day_leaves_count'] ?? 0;

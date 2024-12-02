@@ -132,8 +132,11 @@
         </tr>
         <tr>
             <td class="label">Informed Absent Days</td>
-            <td class="count-column">{{ $payslip->informed_absent_days_count }}</td>
-            <td class="amount">{{ number_format($payslip->informed_absent_days, 2) }}</td>
+            <td class="count-column">{{ $payslip->informed_absent_days_count}}</td>
+            <td class="amount">{{ number_format($payslip->informed_absent_days, 2) }}</td> /// value
+            
+            
+            
         </tr>
         <tr>
             <td class="label">Uninformed Absent Days</td>
