@@ -209,22 +209,22 @@
 <div class="form-row">
     <div class="col-md-3">
         <label>Actual Days</label>
-        <input type="number" class="form-control" name="uninformed_absent_days">
+        <input type="number" class="form-control" name="uninformed_absent_days_count">
     </div>
     <div class="col-md-3">
         <label>Deducting Days</label>
-        <input type="number" class="form-control" id="uinf-ded-days" name="uinformed_absent_days_count">
+        <input type="number" class="form-control" id="uinf-ded-days" name="uinformed_absent_days">
     </div>
     <div class="col-md-3">
         <label>Deducting Rate</label>
-        <input type="number" class="form-control" id="deduct-rate" name="">
+        <input type="any" class="form-control" id="deduct-rate" name="">
     </div>
     <div class="col-md-3">
     <div class="input-group-append">
         <!-- Button that triggers the calculation -->
         <button type="button" class="note-btn btn btn-dark btn-sm" id="uinf-abs-sal">Calculate Amount</button> 
     </div>
-    <input type="text" class="form-control" id="uinf-abs" name="uinf-abs" placeholder="Click Calculate" readonly>
+    <input type="text" class="form-control" id="uinf-abs" name="uninformed_absent_days" placeholder="Click Calculate" readonly>
     
     </div>
 </div>
