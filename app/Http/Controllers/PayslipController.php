@@ -134,6 +134,11 @@ class PayslipController extends Controller
            'uninformed_absent_days_count' => 'nullable|numeric|min:0',
            'late_attendance_days_count' => 'nullable|numeric|min:0',
            'half_day_leaves_count' => 'nullable|numeric|min:0',
+
+           'informed_absent_days_duduct_count' => 'nullable|numeric|min:0',
+           'uninformed_absent_days_duduct_count' => 'nullable|numeric|min:0'     
+
+
         ]);
     
         // Extract the validated data
@@ -156,6 +161,10 @@ class PayslipController extends Controller
     
         // Total earnings calculation (gross salary)
         $totalEarnings = $pfTotal + $normalOtPay + $doubleOtPay+ $before835Incentive;
+
+
+        $informedabsentdaysdeductcount = $validatedData['informed_absent_days_duduct_count'];
+        $uninformedabsentdaysdeductcount = $validatedData['uninformed_absent_days_duduct_count'];
     
 
         
@@ -231,6 +240,10 @@ class PayslipController extends Controller
         $payslip->uninformed_absent_days_count = $uninformedAbsentDaysCount;
         $payslip->late_attendance_days_count = $lateAttendanceDaysCount;
         $payslip->half_day_leaves_count = $halfDayLeavesCount;
+
+        $payslip->informed_absent_days_duduct_count = $informedabsentdaysdeductcount;
+        $payslip->uninformed_absent_days_duduct_count = $uninformedabsentdaysdeductcount;
+
     
         // Save to database
         $payslip->save();
@@ -259,6 +272,8 @@ class PayslipController extends Controller
      */
     public function edit(Payslip $payslip)
     {
+
+
         return view('payslip.edit', compact('payslip'));
     }
 
@@ -292,11 +307,11 @@ class PayslipController extends Controller
      * @param  \App\Models\Payslip  $payslip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payslip $payslip)
+    public function destroy(Payslip $id)
     {
         $payslip->delete();
 
-        return redirect()->route('payslip.index')->with('success', 'Payslip deleted successfully.');
+        return redirect()->route('payslip.pdf')->with('success', 'Payslip deleted successfully.');
     }
 
     public function generatePdf($id)

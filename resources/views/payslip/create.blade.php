@@ -187,7 +187,7 @@
     </div>
     <div class="col-md-4">
         <label>Deducting Days</label>
-        <input type="number" class="form-control" id="inf-ded-days" name="informed_absent_days">
+        <input type="number" class="form-control" id="inf-ded-days" name="informed_absent_days_duduct_count">
     </div>
     <div class="col-md-4">
     <div class="input-group-append">
@@ -213,7 +213,7 @@
     </div>
     <div class="col-md-3">
         <label>Deducting Days</label>
-        <input type="number" class="form-control" id="uinf-ded-days" name="uinformed_absent_days">
+        <input type="number" class="form-control" id="uinf-ded-days" name="uninformed_absent_days_duduct_count">
     </div>
     <div class="col-md-3">
         <label>Deducting Rate</label>

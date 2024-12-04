@@ -18,10 +18,17 @@ class PayslipDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($row) {
-                return '<a href="' . route('payslip.pdf', $row->id) . '" class="btn btn-sm btn-primary">PDF</a>';
+              $PDFbutton = '<a href="' . route('payslip.pdf', $row->id) . '" class="btn btn-sm btn-primary">PDF</a>';
+            //   $Deletebutton ='<a href="' . route('payslip.destroy', $row->id) . '" class="btn btn-sm btn-primary">DELETE</a>';
+
+            //   return $PDFbutton . ' ' . $Deletebutton;
+            return $PDFbutton;
+
             })
             ->setRowId('id')
             ->rawColumns(['action']);
+
+
     }
 
     public function query(Payslip $model): QueryBuilder
@@ -79,7 +86,7 @@ class PayslipDataTable extends DataTable
                 ->width(60)
                 ->addClass('text-center'),
             Column::make('emp_no')->width(20),
-            Column::make('emp_name')->width(30),
+            Column::make('emp_name')->width(30),    
             Column::make('month')->width(20),
             Column::make('base_salary')->width(20),
             Column::make('attendance_incentive')
