@@ -307,12 +307,17 @@ class PayslipController extends Controller
      * @param  \App\Models\Payslip  $payslip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payslip $id)
+    public function deletepayslip($id)
     {
-        $payslip->delete();
+        // Find the payslip by ID
+        $payslip = Payslip::findOrFail($id);
 
-        return redirect()->route('payslip.pdf')->with('success', 'Payslip deleted successfully.');
+        $destroy = payslip.delete();
+       
+        // Redirect back with success message
+        return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }
+    
 
     public function generatePdf($id)
     {

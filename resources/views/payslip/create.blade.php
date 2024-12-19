@@ -293,12 +293,6 @@
                                     <label>ETF</label>
                                     <input type="number" class="form-control" name="etf">
                                 </div>
-
-
-
-
-
-
                                 
                             </div>
                             <div class="form-group">
@@ -306,9 +300,40 @@
                                 <input type="number" class="form-control" name="total_employer_contribution">
                             </div> --}}
 
-                            <div class="form-group mt-4 text-right">
+
+
+
+                            <!-- Button -->
+<div class="form-group mt-4 text-right">
+    <button type="submit" class="btn btn-primary" id="createPayslipButton">Create Payslip</button>
+</div>
+
+<script>
+document.getElementById("createPayslipButton").addEventListener("click", function(event) {
+    // Prevent the form from submitting immediately
+    event.preventDefault();
+
+    // Show confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to create the payslip?");
+    if (userConfirmed) {
+        // If user confirms, programmatically submit the form
+        this.closest("form").submit();
+    }
+});
+</script>
+
+
+
+
+
+
+                            
+                            <!-- <div class="form-group mt-4 text-right">
                                 <button type="submit" class="btn btn-primary">Create Payslip</button>
-                            </div>
+                            </div> -->
+
+
+                            
                         </form>
                     </div>
                 </div>
@@ -368,6 +393,7 @@
     // Add an event listener to the Calculate button
     document.getElementById('cal-day-sal').addEventListener('click', calculateSalary);
 </script>
+
 <script>
     // Function to calculate informed abseant days deduction
     function calculateinfdayssal() {
@@ -386,6 +412,7 @@
     // Add an event listener to the Calculate button
     document.getElementById('inf-abs-sal').addEventListener('click', calculateinfdayssal);
 </script>
+
 <script>
     // Function to calculate the uninformed days deducting
     function calculateuinfdayssal() {
