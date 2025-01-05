@@ -10,6 +10,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
+
 class PayslipDataTable extends DataTable
 {
     protected $filters = [];
@@ -17,12 +18,31 @@ class PayslipDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            // First Action: PDF Button
             ->addColumn('action', function ($row) {
-                return '<a href="' . route('payslip.pdf', $row->id) . '" class="btn btn-sm btn-primary">Download PDF</a>';
+                $PDFbutton = '<a href="' . route('payslip.pdf', $row->id) . '" 
+                                class="btn btn-sm btn-primary">PDF</a>';
+                return $PDFbutton;
             })
+
+
+            ->addColumn('Delete', function ($row) {
+                return '<button class="btn btn-sm btn-danger delete-button" data-id="' . $row->id . '">DELETE</button>';
+            })
+    
+            // Second Action: Delete Button
+            // ->addColumn('Delete', function ($row) {
+            //     $Deletebutton = '<a href="' . route('payslip.destroy', $row->id) . '" 
+            //                         class="btn btn-sm btn-danger">DELETE</a>';
+            //     return $Deletebutton;
+            // })
+    
             ->setRowId('id')
-            ->rawColumns(['action']);
+            // Include both 'action' and 'action_1' as raw columns
+            ->rawColumns(['action', 'Delete']);
     }
+    
+
 
     public function query(Payslip $model): QueryBuilder
     {
@@ -73,14 +93,22 @@ class PayslipDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(300)
+                ->addClass('text-center'),
+            
             Column::make('emp_no')->width(20),
-            Column::make('emp_name')->width(30),
+            Column::make('emp_name')->width(30),    
             Column::make('month')->width(20),
             Column::make('base_salary')->width(20),
-            Column::make('attendance_incentive')->width(30),
+            Column::make('attendance_incentive')
+                    ->width(10) 
+                    ->label('ATTN INC'),
             Column::make('other_incentive')->width(30),
             Column::make('before835Incentive')->width(30),
-            Column::make('total_pf')->width(30),
+            Column::make('total_pf')->width(40),
             Column::make('normal_ot_hours')->width(250),
             Column::make('double_ot_hours')->width(250),
             Column::make('normal_ot_pay')->width(250),
@@ -99,11 +127,6 @@ class PayslipDataTable extends DataTable
             Column::make('employer_epf_contribution')->width(280),
             Column::make('etf')->width(30),
             Column::make('total_employer_contribution')->width(400),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
         ];
     }
 

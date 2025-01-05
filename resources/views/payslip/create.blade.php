@@ -18,7 +18,7 @@
             <div class="col-md-8">
                 <div class="card mx-auto" style="width: 100%;">
                     <div class="card-header">
-                        <h4 style="color: darkblue;">Enter Payslip Details</h4>
+                    <h5 class="mt-4" style="color: darkblue;">Enter Payslip Details</h5>
                     </div>
 
                     <div class="card-body">
@@ -27,50 +27,77 @@
 
                             <!-- Employee Search Section -->
                             <div class="form-group">
-                                <label>Employee No / Name</label>
+                                <label>
+                                <h6>    Employee No / Name </h6>
+                                </label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="emp_search" name="emp_search" placeholder="Enter Employee No or Name" required>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-secondary" id="load-employee-btn">Load</button>
+                                        <button type="button" class="btn btn-dark" id="load-employee-btn">Load</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class='form-row'>
+
+                            <!-- EPF Eligibility -->
+                                <div class="col-md-6">
+                                <label>EPF</label>
+                                <select class="form-control" id="emp_epf" name="emp_epf" required>
+                                    <option value="">Select an option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <label>Month</label>
+                                    <input type="month" class="form-control" name="month" required>
+                                </div>
+                                </div>
+                                <br>
+
+
+
+
+                            <div class="form-row">
+
+                            <div class="col-md-6">
                                 <label>Employee No</label>
                                 <input type="text" class="form-control" id="emp_no" name="emp_no" required readonly>
                             </div>
 
-                            <div class="form-group">
+                            <div class="col-md-6">
                                 <label>Employee Name</label>
                                 <input type="text" class="form-control" id="emp_name" name="emp_name" required readonly>
                             </div>
-
-                            <div class="form-group">
-                                <label>Month</label>
-                                <input type="month" class="form-control" name="month" required>
                             </div>
 
+                            
+
+                            
                             <!-- Earnings Section -->
                             <h5 class="mt-4" style="color: darkblue;">Earnings</h5>
                             <div class="form-row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>Basic Salary</label>
                                     <input type="number" class="form-control" id="basic_salary" name="basic_salary" required readonly>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>Attendance Incentive</label>
-                                    <input type="number" class="form-control" name="attendance_incentive">
+                                    <input type="number" class="form-control" id="attendance_incentive" name="attendance_incentive">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label>Other Incentive</label>
-                                    <input type="number" class="form-control" name="other_incentive">
+                                    <input type="number" class="form-control" id="other_incentive" name="other_incentive">
                                 </div>
-                            </div>
-
-                            <div class="form-group">
+                            
+                            <br>
+                            <div class="col-md-3">
                                 <label>Before 8.35 AM Incentive</label>
                                 <input type="number" class="form-control" name="before835Incentive">
+                            </div>
                             </div>
 
                             {{-- <div class="form-group mt-3">
@@ -89,39 +116,121 @@
                             <!-- Overtime -->
                             <h5 class="mt-4" style="color: darkblue;">Overtime</h5>
                             <div class="form-row">
-                                <div class="col-md-6">
-                                    <label>Normal OT Hours</label>
-                                    <input type="number" class="form-control" name="normal_ot_hours">
+
+                            <div class="col-md-4">
+                                    <label>OT Rate</label>
+                                    <input type="any" class="form-control" name="ot_rate" >
+                                    <br>
                                 </div>
-                                <div class="col-md-6">
+                              
+                                <div class="col-md-4">
+                                    <label>Normal OT Hours</label>
+                                    <input type="any" class="form-control" name="normal_ot_hours">
+                                </div>
+
+                                <div class="col-md-4">
                                     <label>Double OT Hours</label>
-                                    <input type="number" class="form-control" name="double_ot_hours">
+                                    <input type="any" class="form-control" name="double_ot_hours">
                                 </div>
                             </div>
 
                               <!-- Deductions Section -->
 <h5 class="mt-4" style="color: darkblue;">Deductions</h5>
 <div class="form-row">
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
         <label>EPF</label>
         <input type="number" class="form-control" name="epf" readonly>
-    </div>
+    </div> -->
     <div class="col-md-6">
-        <label>Salary Advance</label>
+        <label>Salary Advance</label> 
         <input type="number" class="form-control" name="salary_advance">
     </div>
-</div>
-<div class="form-row">
+
+
+
+
     <div class="col-md-6">
-        <label>Informed Absent Days</label>
-        <input type="number" class="form-control" name="informed_absent_days">
+        <label>
+        <h7>Day Salary</h7> </label>  
+
+         <div class="input-group">
+    <!-- Read-only field -->
+    <input type="text" class="form-control" id="cal_day" name="cal_day" placeholder="Click Calculate" readonly>
+    
+    <div class="input-group-append">
+        <!-- Button that triggers the calculation -->
+        <button type="button" class="note-btn btn btn-dark btn-sm" id="cal-day-sal">Calculate</button> 
     </div>
-    <div class="col-md-6">
-        <label>Informed Absent Days Count</label>
+</div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+                                
+
+
+<br>
+<h6>Informed Absent Days</h6>   
+<div class="form-row">
+    <div class="col-md-4">
+        <label>Actual Days</label>
         <input type="number" class="form-control" name="informed_absent_days_count">
     </div>
+    <div class="col-md-4">
+        <label>Deducting Days</label>
+        <input type="number" class="form-control" id="inf-ded-days" name="informed_absent_days_duduct_count">
+    </div>
+    <div class="col-md-4">
+    <div class="input-group-append">
+        <!-- Button that triggers the calculation -->
+        <button type="button" class="note-btn btn btn-dark btn-sm" id="inf-abs-sal">Calculate Amount</button> 
+    </div>
+    <input type="text" class="form-control" id="inf-abs" name="informed_absent_days" placeholder="Click Calculate" readonly>
+    
+    </div>
 </div>
+
+
+
+
+
+
+<br>
+<h6>Uninformed Absent Days</h6>
 <div class="form-row">
+    <div class="col-md-3">
+        <label>Actual Days</label>
+        <input type="number" class="form-control" name="uninformed_absent_days_count">
+    </div>
+    <div class="col-md-3">
+        <label>Deducting Days</label>
+        <input type="number" class="form-control" id="uinf-ded-days" name="uninformed_absent_days_duduct_count">
+    </div>
+    <div class="col-md-3">
+        <label>Deducting Rate</label>
+        <input type="any" class="form-control" id="deduct-rate" name="">
+    </div>
+    <div class="col-md-3">
+    <div class="input-group-append">
+        <!-- Button that triggers the calculation -->
+        <button type="button" class="note-btn btn btn-dark btn-sm" id="uinf-abs-sal">Calculate Amount</button> 
+    </div>
+    <input type="text" class="form-control" id="uinf-abs" name="uninformed_absent_days" placeholder="Click Calculate" readonly>
+    
+    </div>
+</div>
+
+
+<!-- <div class="form-row">
     <div class="col-md-6">
         <label>Uninformed Absent Days</label>
         <input type="number" class="form-control" name="uninformed_absent_days">
@@ -130,30 +239,35 @@
         <label>Uninformed Absent Days Count</label>
         <input type="number" class="form-control" name="uninformed_absent_days_count">
     </div>
-</div>
+</div> -->
+
+<br>
+<h6>Late Attendance</h6>
 <div class="form-row">
     <div class="col-md-6">
-        <label>Late Attendance Days</label>
+        <label> Deduction Amount</label>
         <input type="number" class="form-control" name="late_days">
     </div>
     <div class="col-md-6">
-        <label>Late Attendance Days Count</label>
+        <label> Days Count</label>
         <input type="number" class="form-control" name="late_attendance_days_count">
     </div>
 </div>
-<div class="form-row">
+<br>
+<h6>Half Day Leaves</h6>
+<div class="form-row"> 
     <div class="col-md-6">
-        <label>Half Day Leaves (Hours)</label>
+        <label>Deduction Amount</label>
         <input type="number" class="form-control" name="half_day_leave_hours">
     </div>
     <div class="col-md-6">
-        <label>Half Day Leaves Count</label>
+        <label>Leaves Count</label>
         <input type="number" class="form-control" name="half_day_leaves_count">
     </div>
 </div>
 <div class="form-group">
     <label>Other Deductions</label>
-    <input type="number" class="form-control" name="other_deductions" required>
+    <input type="number" class="form-control" name="other_deductions" >
 </div>
 
 
@@ -174,19 +288,52 @@
                                     <label>Employer's EPF Contribution</label>
                                     <input type="number" class="form-control" name="employer_epf_contribution">
                                 </div>
+
                                 <div class="col-md-6">
                                     <label>ETF</label>
                                     <input type="number" class="form-control" name="etf">
                                 </div>
+                                
                             </div>
                             <div class="form-group">
                                 <label>Total Employer's Contribution</label>
                                 <input type="number" class="form-control" name="total_employer_contribution">
                             </div> --}}
 
-                            <div class="form-group mt-4 text-right">
+
+
+
+                            <!-- Button -->
+<div class="form-group mt-4 text-right">
+    <button type="submit" class="btn btn-primary" id="createPayslipButton">Create Payslip</button>
+</div>
+
+<script>
+document.getElementById("createPayslipButton").addEventListener("click", function(event) {
+    // Prevent the form from submitting immediately
+    event.preventDefault();
+
+    // Show confirmation dialog
+    const userConfirmed = confirm("Are you sure you want to create the payslip?");
+    if (userConfirmed) {
+        // If user confirms, programmatically submit the form
+        this.closest("form").submit();
+    }
+});
+</script>
+
+
+
+
+
+
+                            
+                            <!-- <div class="form-group mt-4 text-right">
                                 <button type="submit" class="btn btn-primary">Create Payslip</button>
-                            </div>
+                            </div> -->
+
+
+                            
                         </form>
                     </div>
                 </div>
@@ -225,6 +372,66 @@
             alert('Please enter Employee No or Name.');
         }
     });
+
 </script>
+
+<script>
+    // Function to calculate the salary
+    function calculateSalary() {
+        // Get values from the respective input fields
+        const basicSalary = parseFloat(document.getElementById('basic_salary').value) || 0;
+        const attendanceIncentive = parseFloat(document.getElementById('attendance_incentive').value) || 0;
+        const otherIncentive = parseFloat(document.getElementById('other_incentive').value) || 0;
+
+        // Perform the calculation
+        const total = (basicSalary + attendanceIncentive + otherIncentive)/25;
+
+        // Set the calculated total in the 'cal_day' input field
+        document.getElementById('cal_day').value = total.toFixed(2);
+    }
+
+    // Add an event listener to the Calculate button
+    document.getElementById('cal-day-sal').addEventListener('click', calculateSalary);
+</script>
+
+<script>
+    // Function to calculate informed abseant days deduction
+    function calculateinfdayssal() {
+        // Get values from the respective input fields
+        const deductingdays = parseFloat(document.getElementById('inf-ded-days').value) || 0;
+        const daysal = parseFloat(document.getElementById('cal_day').value) || 0;
+
+
+        // Perform the calculation
+        const total = deductingdays * daysal;
+
+        // Set the calculated total in the 'inf-day' input field
+        document.getElementById('inf-abs').value = total.toFixed(2);
+    }
+
+    // Add an event listener to the Calculate button
+    document.getElementById('inf-abs-sal').addEventListener('click', calculateinfdayssal);
+</script>
+
+<script>
+    // Function to calculate the uninformed days deducting
+    function calculateuinfdayssal() {
+        // Get values from the respective input fields
+        const deductingdays = parseFloat(document.getElementById('uinf-ded-days').value) || 0;
+        const daysal = parseFloat(document.getElementById('cal_day').value) || 0;
+        const dedrate = parseFloat(document.getElementById('deduct-rate').value) || 0;
+
+
+        // Perform the calculation
+        const total = deductingdays * daysal * dedrate;
+
+        // Set the calculated total in the 'cinf-day' input field
+        document.getElementById('uinf-abs').value = total.toFixed(2);
+    }
+
+    // Add an event listener to the Calculate button
+    document.getElementById('uinf-abs-sal').addEventListener('click', calculateuinfdayssal);
+</script>
+
 
 @endsection
