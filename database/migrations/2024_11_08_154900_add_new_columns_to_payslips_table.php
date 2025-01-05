@@ -18,8 +18,8 @@ return new class extends Migration
             $table->decimal('half_day_leaves_count', 10, 2)->nullable()->after('half_day_leaves');
 
 
-            $table->decimal('informed_absent_days_duduct_count', 10, 2)->after('informed_absent_days_count');
-            $table->decimal('uninformed_absent_days_duduct_count', 10, 2)->after('uninformed_absent_days_count');
+            $table->decimal('informed_absent_days_duduct_count', 10, 2)->nullable()->after('informed_absent_days_count');
+            $table->decimal('uninformed_absent_days_duduct_count', 10, 2)->nullable()->after('uninformed_absent_days_count');
             
         });
     }
